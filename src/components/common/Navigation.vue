@@ -49,7 +49,6 @@ export default {
         this.routes = routes.filter(e => !e.logged && !e.admin)
       }
     }
-    this.routes = routes
   },
   methods: {
     goto (name) {
