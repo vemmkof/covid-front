@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    HELLO
   </div>
 </template>
 
@@ -10,5 +10,5 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="sass" scoped>
 </style>

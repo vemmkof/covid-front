@@ -1,13 +1,24 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app id="app">
+    <navigation-vue />
+    <app-bar-vue />
+    <router-view />
+    <footer-vue />
+  </v-app>
 </template>
+<script>
+import NavigationVue from './components/common/Navigation.vue'
+import AppBarVue from './components/common/AppBar.vue'
+import FooterVue from './components/common/Footer.vue'
+export default {
+  components: {
+    NavigationVue,
+    AppBarVue,
+    FooterVue
 
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
