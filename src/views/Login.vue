@@ -52,7 +52,7 @@
               <v-spacer></v-spacer>
               <v-btn
                 color="primary"
-                @click.stop="login()"
+                @click.stop="login"
               >Login</v-btn>
             </v-card-actions>
           </v-card>
@@ -64,13 +64,15 @@
 
 <script>
 import regex from '@/scripts/regex'
-import { login } from '@/scripts/api/oauth-api.js'
+// import { login } from '@/scripts/api/oauth-api.js'
+import axios from 'axios'
+import queryString from 'query-string'
 export default {
   data () {
     return {
       showPassword: false,
-      username: '',
-      password: '',
+      username: '2014041111',
+      password: 'PEPP980613HDFLCR04',
       regex
     }
   },
@@ -79,11 +81,31 @@ export default {
       const validate = this.$refs.loginForm.validate()
       console.log(validate)
       if (validate) {
-        login({
+        // axios.get('https://pokeapi.co/api/v2/pokemon/ditto')
+        //   .then(response => { console.log(response) })
+        //   .catch(error => console.error(error))
+
+        const requestBody = {
           grant_type: 'password',
           username: this.username,
           password: this.password
-        })
+        }
+
+        const config = {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Basic dnVlU2VndWltaWVudG9Db3ZpZEFjdGl2aWRhZGVzOjNlYWIyNTY0MzM4OWFhMDMyYzc2ZDc0NGQ4ZDU3MWFl'
+          }
+        }
+
+        axios.post('https://rocky-depths-49701.herokuapp.com/oauth/token', queryString.stringify(requestBody), config)
+          .then((result) => {
+            console.log({ result })
+          })
+          .catch((err) => {
+            console.log({ err })
+          })
+
       }
     }
   },
