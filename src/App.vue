@@ -4,18 +4,23 @@
     <app-bar-vue />
     <router-view />
     <footer-vue />
+    <snack-vue />
+    <loader-vue />
   </v-app>
 </template>
 <script>
 import NavigationVue from './components/common/Navigation.vue'
 import AppBarVue from './components/common/AppBar.vue'
 import FooterVue from './components/common/Footer.vue'
+import LoaderVue from './components/common/Loader.vue'
+import SnackVue from './components/common/Snack.vue'
 export default {
   components: {
     NavigationVue,
     AppBarVue,
-    FooterVue
-
+    FooterVue,
+    LoaderVue,
+    SnackVue
   }
 }
 </script>

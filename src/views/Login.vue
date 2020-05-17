@@ -53,6 +53,8 @@
               <v-btn
                 color="primary"
                 @click.stop="login"
+                :disabled="loader"
+                :loading="loader"
               >Login</v-btn>
             </v-card-actions>
           </v-card>
@@ -64,48 +66,48 @@
 
 <script>
 import regex from '@/scripts/regex'
-// import { login } from '@/scripts/api/oauth-api.js'
-import axios from 'axios'
-import queryString from 'query-string'
+import { login, checkToken } from '@/scripts/api/oauth-api.js'
+import { setToken, setData } from '@/scripts/helper/cookie-helper.js'
 export default {
   data () {
     return {
       showPassword: false,
       username: '2014041111',
       password: 'PEPP980613HDFLCR04',
+      loader: false,
       regex
     }
   },
   methods: {
     login () {
       const validate = this.$refs.loginForm.validate()
-      console.log(validate)
       if (validate) {
-        // axios.get('https://pokeapi.co/api/v2/pokemon/ditto')
-        //   .then(response => { console.log(response) })
-        //   .catch(error => console.error(error))
-
-        const requestBody = {
-          grant_type: 'password',
+        this.loader = true
+        login({
           username: this.username,
           password: this.password
-        }
-
-        const config = {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic dnVlU2VndWltaWVudG9Db3ZpZEFjdGl2aWRhZGVzOjNlYWIyNTY0MzM4OWFhMDMyYzc2ZDc0NGQ4ZDU3MWFl'
-          }
-        }
-
-        axios.post('https://rocky-depths-49701.herokuapp.com/oauth/token', queryString.stringify(requestBody), config)
+        })
           .then((result) => {
-            console.log({ result })
+            setToken(result.data)
+            return checkToken()
           })
-          .catch((err) => {
-            console.log({ err })
+          .then(result => {
+            const role = setData(result.data)
+            if (role === 'ADMIN') {
+              this.$router.push({
+                name: 'Home'
+              })
+            } else {
+              this.$router.push({
+                name: 'Quiz'
+              })
+            }
           })
-
+          .catch(() => {
+          })
+          .finally(() => {
+            this.loader = false
+          })
       }
     }
   },

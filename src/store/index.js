@@ -5,6 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    loader: false,
+    snack: false,
+    message: 'sdfsdfsdlkfnsdkjfhksdj'
   },
   getters: {
     getField

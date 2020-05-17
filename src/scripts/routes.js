@@ -14,7 +14,7 @@ export default [
         path: '/about',
     },
     {
-        admin: false,
+        admin: true,
         icon: 'mdi-home',
         logged: true,
         name: 'Home',
