@@ -1,5 +1,5 @@
 <template>
-  <v-form>
+  <v-form ref="formMatrix">
     <v-data-table
       :headers="headers"
       :items="matrix"
@@ -17,6 +17,8 @@
           dense
           label="Plataforma"
           clearable=""
+          required
+          :rules="regex.selectRule"
         ></v-autocomplete>
       </template>
       <template v-slot:item.idsMedioComunicacion="{ item }">
@@ -32,6 +34,8 @@
           label="Medios de Comunicación"
           multiple=""
           clearable=""
+          required
+          :rules="regex.selectMulRule"
         ></v-autocomplete>
       </template>
       <template v-slot:item.idPorcentaje="{ item }">
@@ -44,9 +48,19 @@
           dense
           label="Porcentaje"
           clearable=""
+          required
+          :rules="regex.selectRule"
         ></v-autocomplete>
       </template>
     </v-data-table>
+    <v-row>
+      <v-btn
+        block
+        color="primary"
+        dark
+        @click.stop="sendForm"
+      >Send</v-btn>
+    </v-row>
   </v-form>
 </template>
 
@@ -55,6 +69,7 @@ import { mapFields } from 'vuex-map-fields'
 import { getUserGroup } from '@/scripts/api/user-api'
 import { getPlatform, getMedia, getPercent } from '@/scripts/api/catalogue-api'
 import { headers } from '@/scripts/components/matrix-table'
+import regex from '@/scripts/regex'
 export default {
   data () {
     return {
@@ -62,6 +77,7 @@ export default {
       platforms: [],
       medias: [],
       percents: [],
+      regex
     }
   },
   computed: {
@@ -122,6 +138,11 @@ export default {
           idPorcentaje: 0
         }
       })
+    },
+    sendForm () {
+      const validate = this.$refs.formMatrix.validate()
+      if (!validate) return
+      console.log(this.matrix)
     }
   },
 }

@@ -36,7 +36,7 @@
 
                 <v-text-field
                   id="curp"
-                  label="curp"
+                  label="CURP"
                   name="curp"
                   prepend-icon="mdi-lock"
                   :type="showPassword ? 'password' : 'text'"
