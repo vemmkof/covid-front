@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     loader: false,
     snack: false,
-    message: 'sdfsdfsdlkfnsdkjfhksdj'
+    message: '',
+    profile: {}
   },
   getters: {
     getField
