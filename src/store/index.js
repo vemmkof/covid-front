@@ -8,7 +8,8 @@ export default new Vuex.Store({
     loader: false,
     snack: false,
     message: '',
-    profile: {}
+    profile: {},
+    matrix: []
   },
   getters: {
     getField
