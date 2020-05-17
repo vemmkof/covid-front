@@ -23,19 +23,19 @@ const headers = [
         text: 'Plataforma',
         align: 'center',
         sortable: true,
-        value: 'name',
+        value: 'idPlataforma',
     },
     {
         text: 'Medios',
         align: 'center',
         sortable: true,
-        value: 'name',
+        value: 'idsMedioComunicacion',
     },
     {
         text: 'Porcentaje',
         align: 'center',
         sortable: true,
-        value: 'name',
+        value: 'idPorcentaje',
     }
 ]
 
