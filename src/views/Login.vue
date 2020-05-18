@@ -39,8 +39,8 @@
                   label="CURP"
                   name="curp"
                   prepend-icon="mdi-lock"
-                  :type="showPassword ? 'password' : 'text'"
-                  :append-icon="showPassword ? 'mdi-eye': 'mdi-eye-off'"
+                  :type="showPassword ? 'text' : 'password'"
+                  :append-icon="showPassword ? 'mdi-eye-off' :'mdi-eye' "
                   @click:append="showPassword = !showPassword"
                   v-model="password"
                   required

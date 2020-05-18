@@ -6,11 +6,13 @@
       :items-per-page="8"
       class="elevation-1"
       hide-default-footer=""
+      v-if="showMatrix"
     >
       <template v-slot:item.idPlataforma="{ item }">
         <v-autocomplete
           v-model="item.idPlataforma"
           :items="platforms"
+          item-value="idPlataforma"
           item-key="idPlataforma"
           item-text="nombrePlataforma"
           outlined
@@ -25,6 +27,7 @@
         <v-autocomplete
           v-model="item.idsMedioComunicacion"
           :items="medias"
+          item-value="idMedioComunicacion"
           item-key="idMedioComunicacion"
           item-text="nombreMedioComunicacion"
           outlined
@@ -42,6 +45,7 @@
         <v-autocomplete
           v-model="item.idPorcentaje"
           :items="percents"
+          item-value="idPorcentaje"
           item-key="idPorcentaje"
           item-text="cantidad"
           outlined
@@ -53,13 +57,16 @@
         ></v-autocomplete>
       </template>
     </v-data-table>
-    <v-row>
+    <v-row v-if="showMatrix">
       <v-btn
         block
         color="primary"
         dark
         @click.stop="sendForm"
       >Send</v-btn>
+    </v-row>
+    <v-row v-if="!showMatrix" align="center" justify="center" class="pa-6 title">
+      Tu respuesta fue recibida
     </v-row>
   </v-form>
 </template>
@@ -68,6 +75,7 @@
 import { mapFields } from 'vuex-map-fields'
 import { getUserGroup } from '@/scripts/api/user-api'
 import { getPlatform, getMedia, getPercent } from '@/scripts/api/catalogue-api'
+import { sendQuiz } from '@/scripts/api/quiz-api'
 import { headers } from '@/scripts/components/matrix-table'
 import regex from '@/scripts/regex'
 export default {
@@ -77,7 +85,8 @@ export default {
       platforms: [],
       medias: [],
       percents: [],
-      regex
+      regex,
+      showMatrix: true
     }
   },
   computed: {
@@ -90,11 +99,14 @@ export default {
       handler (newValue) {
         if (newValue && newValue.applyQuiz)
           this.fillData()
+        else
+          this.showMatrix = false
       }
     }
   },
   methods: {
     fillData () {
+      this.showMatrix = true
       this.loader = true
       getUserGroup()
         .then((result) => {
@@ -142,6 +154,18 @@ export default {
     sendForm () {
       const validate = this.$refs.formMatrix.validate()
       if (!validate) return
+      sendQuiz(this.matrix)
+        .then((result) => {
+          const data = result.data
+          this.snack = true
+          this.message = data.message
+          this.profile = data.entity
+        }).catch((err) => {
+          this.snack = true
+          this.message = err
+        }).finally(() => {
+          this.loader = false
+        })
       console.log(this.matrix)
     }
   },

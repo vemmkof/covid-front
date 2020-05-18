@@ -6,6 +6,14 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '*',
+    name: 'catchAll',
+    component: () => import('../views/Login.vue'),
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
     path: '/',
     name: 'Login',
     component: () => import('../views/Login.vue'),
