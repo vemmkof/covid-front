@@ -29,7 +29,7 @@
       >
         <v-list-item-action>
           <v-icon color="primary">
-            mdi-account
+            mdi-account-arrow-left
           </v-icon>
         </v-list-item-action>
         <v-list-item-content>

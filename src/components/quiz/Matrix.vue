@@ -9,52 +9,60 @@
       v-if="showMatrix"
     >
       <template v-slot:item.idPlataforma="{ item }">
-        <v-autocomplete
-          v-model="item.idPlataforma"
-          :items="platforms"
-          item-value="idPlataforma"
-          item-key="idPlataforma"
-          item-text="nombrePlataforma"
-          outlined
-          dense
-          label="Plataforma"
-          clearable=""
-          required
-          :rules="regex.selectRule"
-        ></v-autocomplete>
+        <v-row class="ma-4">
+          <v-autocomplete
+            v-model="item.idPlataforma"
+            :items="platforms"
+            item-value="idPlataforma"
+            item-key="idPlataforma"
+            item-text="nombrePlataforma"
+            outlined
+            dense
+            label="Plataforma"
+            clearable=""
+            required
+            :rules="regex.selectRule"
+          ></v-autocomplete>
+        </v-row>
       </template>
       <template v-slot:item.idsMedioComunicacion="{ item }">
-        <v-autocomplete
-          v-model="item.idsMedioComunicacion"
-          :items="medias"
-          item-value="idMedioComunicacion"
-          item-key="idMedioComunicacion"
-          item-text="nombreMedioComunicacion"
-          outlined
-          dense
-          chips=""
-          small-chips=""
-          label="Medios de Comunicación"
-          multiple=""
-          clearable=""
-          required
-          :rules="regex.selectMulRule"
-        ></v-autocomplete>
+        <v-row class="ma-4">
+          <v-flex xs11 offset-xs1 md12>
+            <v-autocomplete
+              v-model="item.idsMedioComunicacion"
+              :items="medias"
+              item-value="idMedioComunicacion"
+              item-key="idMedioComunicacion"
+              item-text="nombreMedioComunicacion"
+              outlined
+              dense
+              chips=""
+              small-chips=""
+              label="Medios de comuniación"
+              multiple=""
+              clearable=""
+              required
+              :rules="regex.selectMulRule"
+            ></v-autocomplete>
+          </v-flex>
+        </v-row>
       </template>
       <template v-slot:item.idPorcentaje="{ item }">
-        <v-autocomplete
-          v-model="item.idPorcentaje"
-          :items="percents"
-          item-value="idPorcentaje"
-          item-key="idPorcentaje"
-          item-text="cantidad"
-          outlined
-          dense
-          label="Porcentaje"
-          clearable=""
-          required
-          :rules="regex.selectRule"
-        ></v-autocomplete>
+        <v-row class="ma-4">
+          <v-autocomplete
+            v-model="item.idPorcentaje"
+            :items="percents"
+            item-value="idPorcentaje"
+            item-key="idPorcentaje"
+            item-text="cantidad"
+            outlined
+            dense
+            label="Porcentaje"
+            clearable=""
+            required
+            :rules="regex.selectRule"
+          ></v-autocomplete>
+        </v-row>
       </template>
     </v-data-table>
     <v-row v-if="showMatrix">
@@ -65,7 +73,12 @@
         @click.stop="sendForm"
       >Send</v-btn>
     </v-row>
-    <v-row v-if="!showMatrix" align="center" justify="center" class="pa-6 title">
+    <v-row
+      v-if="!showMatrix"
+      align="center"
+      justify="center"
+      class="pa-6 title"
+    >
       Tu respuesta fue recibida
     </v-row>
   </v-form>
