@@ -2,8 +2,7 @@
   <div
     class="chart ma-4"
     ref="chartdiv"
-  >
-  </div>
+  />
 </template>
 
 <script>
@@ -12,7 +11,6 @@ import { mapFields } from 'vuex-map-fields'
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-
 am4core.useTheme(am4themes_animated);
 export default {
   data () {
@@ -87,8 +85,4 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.chart {
-  width: 100%;
-  height: 500px;
-}
 </style>

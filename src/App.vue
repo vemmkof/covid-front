@@ -45,4 +45,8 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+.chart {
+  width: 100%;
+  height: 500px;
+}
 </style>
