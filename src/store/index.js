@@ -9,7 +9,8 @@ export default new Vuex.Store({
     snack: false,
     message: '',
     profile: {},
-    matrix: []
+    matrix: [],
+    drawer: false
   },
   getters: {
     getField

@@ -3,6 +3,7 @@
     app
     clipped-left
   >
+    <v-app-bar-nav-icon @click="drawer = true" />
     <v-img
       class="mx-2"
       src="@/assets/logo_escom.png"
@@ -24,7 +25,11 @@
 </template>
 
 <script>
+import { mapFields } from 'vuex-map-fields'
 export default {
+  computed: {
+    ...mapFields(['drawer'])
+  },
 }
 </script>
 

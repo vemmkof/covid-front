@@ -4,6 +4,7 @@
     fixed
     clipped
     :expand-on-hover="true"
+    v-model="drawer"
   >
     <v-list dense>
       <v-list-item
@@ -45,6 +46,7 @@
 <script>
 import routes from '@/scripts/routes'
 import { removeData } from '@/scripts/helper/cookie-helper.js'
+import { mapFields } from 'vuex-map-fields'
 export default {
   name: 'Navigation',
   data () {
@@ -52,6 +54,9 @@ export default {
       routes: [],
       showLogout: false
     }
+  },
+  computed: {
+    ...mapFields(['drawer'])
   },
   mounted () {
     this.updateNavigationDrawer()
