@@ -8,7 +8,7 @@
           shaped=""
         >
           <v-card-subtitle>
-            Este cuestionario tiene como finalidad conocer la manera en que el docente le brindo el seguimiento a las actividades académicas a distancia durante el periodo comprendido del 20 de abril a la fecha, derivado de lo establecido por las autoridades sanitarios con motivo de la contingencia por COVID-19 con base en el comunicado de la Dirección General del IPN del 19 de abril.
+            Este cuestionario tiene como finalidad ayudar en la baja de UA(s) derivado de lo establecido por las autoridades con motivo de la contingencia por COVID-19 con base en el comunicado de la Dirección General del IPN.
           </v-card-subtitle>
         </v-card>
       </v-col>

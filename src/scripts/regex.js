@@ -17,5 +17,8 @@ export default {
     ],
     selectMulRule: [
         selectMulNotEmpty
+    ],
+    reasonRule: [
+        notempty
     ]
 }

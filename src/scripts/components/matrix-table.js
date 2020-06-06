@@ -20,23 +20,23 @@ const headers = [
         value: 'nombreUnidadAprendizaje',
     },
     {
-        text: 'Plataforma',
+        text: 'Baja',
         align: 'center',
         sortable: false,
-        value: 'idPlataforma',
+        value: 'baja',
     },
     {
-        text: 'Medios',
+        text: 'Motivos',
         align: 'center',
         sortable: false,
-        value: 'idsMedioComunicacion',
+        value: 'motivo',
     },
-    {
-        text: 'Porcentaje',
-        align: 'center',
-        sortable: false,
-        value: 'idPorcentaje',
-    }
+    // {
+    //     text: 'Porcentaje',
+    //     align: 'center',
+    //     sortable: false,
+    //     value: 'idPorcentaje',
+    // }
 ]
 
 

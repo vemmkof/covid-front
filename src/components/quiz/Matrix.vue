@@ -8,61 +8,26 @@
       hide-default-footer=""
       v-if="showMatrix"
     >
-      <template v-slot:item.idPlataforma="{ item }">
-        <v-row class="ma-4">
-          <v-autocomplete
-            v-model="item.idPlataforma"
-            :items="platforms"
-            item-value="idPlataforma"
-            item-key="idPlataforma"
-            item-text="nombrePlataforma"
-            outlined
-            dense
-            label="Plataforma"
-            clearable=""
-            required
-            :rules="regex.selectRule"
-          ></v-autocomplete>
+      <template v-slot:item.baja="{ item }">
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <v-checkbox
+            v-model="item.baja"
+            :label="item.baja ? 'Sí' : 'No'"
+          ></v-checkbox>
         </v-row>
       </template>
-      <template v-slot:item.idsMedioComunicacion="{ item }">
-        <v-row class="ma-4">
-          <v-flex xs11 offset-xs1 md12>
-            <v-autocomplete
-              v-model="item.idsMedioComunicacion"
-              :items="medias"
-              item-value="idMedioComunicacion"
-              item-key="idMedioComunicacion"
-              item-text="nombreMedioComunicacion"
-              outlined
-              dense
-              chips=""
-              small-chips=""
-              label="Medios de comuniación"
-              multiple=""
-              clearable=""
-              required
-              :rules="regex.selectMulRule"
-            ></v-autocomplete>
-          </v-flex>
-        </v-row>
-      </template>
-      <template v-slot:item.idPorcentaje="{ item }">
-        <v-row class="ma-4">
-          <v-autocomplete
-            v-model="item.idPorcentaje"
-            :items="percents"
-            item-value="idPorcentaje"
-            item-key="idPorcentaje"
-            item-text="cantidad"
-            outlined
-            dense
-            label="Porcentaje"
-            clearable=""
-            required
-            :rules="regex.selectRule"
-          ></v-autocomplete>
-        </v-row>
+      <template v-slot:item.motivo="{ item }">
+        <v-text-field
+          v-if="item.baja"
+          v-model="item.motivo"
+          label="Motivo(s) de baja"
+          clearable
+          required
+          :rules="regex.reasonRule"
+        ></v-text-field>
       </template>
     </v-data-table>
     <v-row v-if="showMatrix">
@@ -71,7 +36,7 @@
         color="primary"
         dark
         @click.stop="sendForm"
-      >Send</v-btn>
+      >Envíar</v-btn>
     </v-row>
     <v-row
       v-if="!showMatrix"
@@ -87,7 +52,6 @@
 <script>
 import { mapFields } from 'vuex-map-fields'
 import { getUserGroup } from '@/scripts/api/user-api'
-import { getPlatform, getMedia, getPercent } from '@/scripts/api/catalogue-api'
 import { sendQuiz } from '@/scripts/api/quiz-api'
 import { headers } from '@/scripts/components/matrix-table'
 import regex from '@/scripts/regex'
@@ -127,24 +91,6 @@ export default {
           this.message = data.message
           this.snack = true
           this.mapToMatrix(data.entity.groups)
-          return getPlatform()
-        }).then(result => {
-          const data = result.data
-          this.message = data.message
-          this.snack = true
-          this.platforms = data.entity
-          return getMedia()
-        }).then(result => {
-          const data = result.data
-          this.message = data.message
-          this.snack = true
-          this.medias = data.entity
-          return getPercent()
-        }).then(result => {
-          const data = result.data
-          this.message = data.message
-          this.snack = true
-          this.percents = data.entity
         }).catch((err) => {
           console.error(err);
         }).finally(() => {
@@ -157,10 +103,7 @@ export default {
           idGrupo: e.idGrupo,
           nivelSemestre: e.nivelSemestre,
           secuencia: e.secuencia,
-          nombreUnidadAprendizaje: e.unidadAprendizaje.nombreUnidadAprendizaje,
-          idPlataforma: 0,
-          idsMedioComunicacion: [],
-          idPorcentaje: 0
+          nombreUnidadAprendizaje: e.unidadAprendizaje.nombreUnidadAprendizaje
         }
       })
     },
@@ -179,7 +122,7 @@ export default {
         }).finally(() => {
           this.loader = false
         })
-      console.log(this.matrix)
+      console.log(JSON.parse(JSON.stringify(this.matrix)))
     }
   },
 }

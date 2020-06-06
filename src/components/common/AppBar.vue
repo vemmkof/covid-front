@@ -12,7 +12,7 @@
     />
     <v-spacer></v-spacer>
     <v-toolbar-title>
-      Seguimiento de Actividades Académicas a Distancia
+      Seguimiento de UAs a dar de baja
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-img
