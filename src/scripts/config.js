@@ -10,6 +10,6 @@ const axiosConfig = () => {
 
 export default {
     // BASE_URL: 'http://localhost:8081/',
-    BASE_URL: 'https://rocky-depths-49701.herokuapp.com/',
+    BASE_URL: 'https://floating-springs-07652.herokuapp.com/',
     axiosConfig
 };
