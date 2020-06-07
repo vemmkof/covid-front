@@ -1,12 +1,14 @@
 <template>
-  <v-form ref="formMatrix">
+  <v-form
+    ref="formMatrix"
+    v-if="showMatrix"
+  >
     <v-data-table
       :headers="headers"
       :items="matrix"
       :items-per-page="8"
       class="elevation-1"
       hide-default-footer=""
-      v-if="showMatrix"
     >
       <template v-slot:item.baja="{ item }">
         <v-row
@@ -38,14 +40,6 @@
         @click.stop="sendForm"
       >Envíar</v-btn>
     </v-row>
-    <v-row
-      v-if="!showMatrix"
-      align="center"
-      justify="center"
-      class="pa-6 title"
-    >
-      Tu respuesta fue recibida
-    </v-row>
   </v-form>
 </template>
 
@@ -63,7 +57,7 @@ export default {
       medias: [],
       percents: [],
       regex,
-      showMatrix: true
+      showMatrix: false
     }
   },
   computed: {
@@ -74,10 +68,12 @@ export default {
       immediate: true,
       deep: true,
       handler (newValue) {
-        if (newValue && newValue.applyQuiz)
+        if (newValue && newValue.applyQuiz) {
+          this.showMatrix = true
           this.fillData()
-        else
+        } else {
           this.showMatrix = false
+        }
       }
     }
   },
