@@ -20,5 +20,8 @@ export default {
     ],
     reasonRule: [
         notempty
+    ],
+    fileRule: [
+        notempty
     ]
 }

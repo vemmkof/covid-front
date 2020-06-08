@@ -12,6 +12,7 @@
     "@babel/polyfill": "^7.4.4",
     "@mdi/font": "^3.6.95",
     "core-js": "^3.6.4",
+    "downloadjs": "^1.4.7",
     "firebase": "^7.14.3",
     "query-string": "^6.12.1",
     "roboto-fontface": "*",

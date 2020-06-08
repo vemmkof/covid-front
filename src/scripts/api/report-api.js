@@ -8,5 +8,8 @@ const getReport = () => {
     return axios.get(REPORT_URL, axiosConfig())
 }
 
+const saveReport = (report) => {
+    return axios.post(REPORT_URL, report, axiosConfig())
+}
 
-export { getReport }
+export { getReport, saveReport }
