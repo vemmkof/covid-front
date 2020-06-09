@@ -24,6 +24,15 @@
         </v-btn>
       </template>
     </v-data-table>
+    <v-btn
+      block
+      color="primary"
+      dark
+      @click.stop="downloadAll"
+    >
+      <v-icon>mdi-download</v-icon>
+      Descargar
+    </v-btn>
   </div>
 </template>
 
@@ -97,6 +106,9 @@ export default {
           console.log(err)
         });
     },
+    downloadAll () {
+      console.log('skdjds')
+    }
   },
 }
 </script>
