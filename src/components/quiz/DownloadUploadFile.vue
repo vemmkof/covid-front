@@ -5,7 +5,8 @@
       justify="center"
       class="title"
     >
-      {{ showDUFile ? 'Tu solicitud fue registrada, por favor continua con el proceso': 'Tu solicitud fue recibida.' }}
+      {{ showDUFile ? 'Tu solicitud fue registrada, por favor continua con el proceso': '' }}
+      {{ finished ? 'Tu solicitud fue recibida.' : '' }}
     </v-row>
     <v-row v-if="showDUFile">
       <v-btn
@@ -51,6 +52,7 @@ export default {
   data () {
     return {
       showDUFile: false,
+      finished: false,
       file: null,
       regex
     }
@@ -66,6 +68,9 @@ export default {
         if (newValue && !newValue.applyQuiz && !newValue.filePath) {
           this.showDUFile = true
         } else {
+          if (!newValue.applyQuiz) {
+            this.finished = true
+          }
           this.showDUFile = false
         }
       }

@@ -6,6 +6,7 @@
       label="Search"
       single-line
       hide-details
+      clearable=""
     ></v-text-field>
     <v-data-table
       :headers="headers"
@@ -41,6 +42,7 @@ import { headers } from '@/scripts/components/baja-table'
 import { getBajaReport, downloadReport } from '@/scripts/api/report-api'
 import { downloadFromBase64 } from '@/scripts/actions/file64'
 import { mapFields } from 'vuex-map-fields'
+import { json2excel } from 'js2excel'
 export default {
   data () {
     return {
@@ -48,7 +50,7 @@ export default {
       bajas: [],
       search: '',
       footerProps: {
-        'items-per-page-options': [10, 20, 30, 40, 50, -1]
+        'items-per-page-options': [10, 20, 50, 100, -1]
       }
     }
   },
@@ -107,7 +109,10 @@ export default {
         });
     },
     downloadAll () {
-      console.log('skdjds')
+      const excel = {}
+      excel.data = this.bajas
+      excel.name = `Bajas-${new Date().toDateString()}`
+      json2excel(excel)
     }
   },
 }
