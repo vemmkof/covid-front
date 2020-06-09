@@ -1,12 +1,18 @@
 <template>
   <div>
+    <v-text-field
+      v-model="search"
+      append-icon="mdi-magnify"
+      label="Search"
+      single-line
+      hide-details
+    ></v-text-field>
     <v-data-table
       :headers="headers"
       :items="bajas"
+      :search="search"
       class="elevation-1"
-      :footer-props="{
-            'items-per-page-options': [10, 20, 30, 40, 50, -1]
-        }"
+      :footer-props="footerProps"
     >
       <template v-slot:item.comprobrante="{ item }">
         <v-btn
@@ -31,7 +37,9 @@ export default {
     return {
       headers,
       bajas: [],
-      pagination: {
+      search: '',
+      footerProps: {
+        'items-per-page-options': [10, 20, 30, 40, 50, -1]
       }
     }
   },
