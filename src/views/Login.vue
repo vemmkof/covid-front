@@ -72,8 +72,10 @@ export default {
   data () {
     return {
       showPassword: false,
-      username: '2014041111',
-      password: 'PEPP980613HDFLCR04',
+      // username: '2014041111',
+      // password: 'PEPP980613HDFLCR04',
+      username: '2015301321',
+      password: 'MUMV960130HMCJRC05',
       loader: false,
       regex
     }
