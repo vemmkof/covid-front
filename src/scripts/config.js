@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue';
 const axiosConfig = () => {
     const accessToken = Vue.$cookies.get('access_token')
     return {
@@ -9,7 +9,7 @@ const axiosConfig = () => {
 }
 
 export default {
-    // BASE_URL: 'http://localhost:8081/',
-    BASE_URL: 'https://floating-springs-07652.herokuapp.com/',
+    BASE_URL: 'http://localhost:8081/',
+    // BASE_URL: 'https://floating-springs-07652.herokuapp.com/',
     axiosConfig
 };

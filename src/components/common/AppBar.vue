@@ -12,7 +12,7 @@
     />
     <v-spacer></v-spacer>
     <v-toolbar-title>
-      Seguimiento de UAs a dar de baja
+      Solicitud de Boleta Global
     </v-toolbar-title>
     <v-spacer></v-spacer>
     <v-img
